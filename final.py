@@ -8,7 +8,16 @@ inventory = []
 # only 7 moves allowed!
 moves = 0
 outside = 0
-
+# read files
+with open("words.txt","r") as file:
+    words= file.read().split(",")
+with open("win_loss.txt", "r")as file:
+    win_loss = file.read().strip().split(",")
+#use split(",") on content of the words txt doc to create list of words
+#turn win loss into an integer so that we can concatinate
+# pull win and loose totals from other txt file and save them as 2 seperate variables
+win = int(win_loss[0])
+loss = int(win_loss[1])
 
 
 # Alexia, Start room and Plot
@@ -62,9 +71,36 @@ def room_three():
 #nickolle, Room 2
 # if they decide to go to the living room.
 def living_room():
-    action= input("You are now in the living room. Would you like to go to the kitchen, upstairs, or would you like to search the room?")
-    if action == "Search"
-    print("You have decided to search the room. You found a key! You now have a key.")
+    action= input("You are now in the living room. Would you like to go to the kitchen, upstairs, or would you like to search the room? (say search or upstairs or kitchen)")
+    if action == "search":
+        print("You have decided to search the room. You found a key! You now have a key.")
+        inventory= inventory+"Key"
+    elif action == "upstairs":
+
+    elif action == "kitchen":
+
+
+
+
+#nickolle, room 4 Upstairs 
+#if they decide to go upstairs 
+def upstairs():
+    action2 = input("You are now in the upstairs. Would you like to go to the rooftop from the window?, or would you like to search the room? (say rooftop or search)")
+    if action2 == "rooftop":
+        print("You decided to go to the rooftop. Looks like the window in the livingroom is too hard to open with just your hands.")
+    if action2 == "Search":
+        print("You now have decided to search the room. You found a crowbar! you now have a crowbar.")
+        inventory = inventory + "crowbar"
+
+
+
+#Addison, room 5 Rooftop
+#if they go to the rooftop
+def rooftop(): # nickolle is doing this next part since addison is not here.
+    action3 = input("You are now in the rooftop would you like to jump off the roof or just sit? The building if flooding really bad. Hurry up. Think what your decision is going to be. Hurry up. (say SIT or JUMP ) ")
+    if action3 == "SIT"
+    print("You decided to sit in your misery. you lasted 2 days starved and died. :) ")
+    
     
 
     
