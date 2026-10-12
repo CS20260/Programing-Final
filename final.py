@@ -1,5 +1,5 @@
 # AB, TG, AB, NB, Final Build a Game
-
+import random
 print("Start")
 
 #ctrl alt f => stop following people
@@ -45,10 +45,10 @@ def room1():
 #	while True:
 #		if move == "1":
 #			print("You go to the kitchen.")
-#			return "room2"
+#			return "room3"
 #		elif move == "2":
 #			print("You go upstairs.")
-#            return "room3"
+#            return "room2"
 #		else:
 #			print("That's not a choice...")
 
@@ -57,19 +57,24 @@ def room1():
 #Addison, Room 3 
 print("You have entered the kitchen")
 def room3():
-    print("You stepped into the kitchen, where you faintly smell pizza sause. You turned your head and saw the backdoor locked, you then reaslize that door is your only ticket out of the house. You then relize you have to find the key to escape the house.")
+    action= print("You stepped into the kitchen, where you faintly smell pizza sause. You see a door, but the door has a lock on it, preventing anyone from coming in. ")
     while True:
         door= input("The door to escape is locked, you began to panic a bit, would you like to break the door down. ")
         if door == "Yes":
             print("You tried to break down the door, but failed. Would you like to search the kitchen? ")
             search= input
             if search == "Yes":
-                print("You began to search everywhere, the cabnets, the stove, the fridge, of of it. You cannot find the key. ")
+                print("You began to search everywhere, the cabnets, the stove, the fridge, all of it. You cannot find the key. ")
                 if search == "No":
                     print("You didn't really wanted to check it. ")
         else:
             door == "No"
-            print("You proceeded to not break the door, as you saved your move. You then thought to check up the stairs, but you also thought to searched the kitchen one more time. Would you like to, A, check upstairs, or B ")
+            print("You proceeded to not break the door, as you saved your move. You then thought to check up the stairs, but you also thought to searched the kitchen one more time. Would you like to, A, check upstairs, or B search kitchen. ")
+            if search == "A":
+                print("You decided to go to the upstairs. ")
+    else:
+            if search == "B":
+                print("You decided to check the kitchen, but you cannot find it again. ")
 
 
 
@@ -82,9 +87,39 @@ def room2():
     if action == "search":
         print("You have decided to search the room. You found a key! You now have a key.")
         inventory= inventory+"Key"
-    elif action == "upstairs":
 
-    elif action == "kitchen":
+        while True:
+            if action == "kitchen":
+                print("you decided to go to the kitchen")
+                return "room3"
+            elif action == ("upstairs"):
+                print ("you decided to go upstairs")
+                return "room4"
+            elif action == "search":
+                print("you decide to search the room.You found a key. You now have a key.")
+                inventory= inventory +"Key"
+
+    
+    
+
+            
+    
+
+   
+    
+                ######## This is how you can move rooms #######
+## give user a list of rooms that THEY CAN GO to *(so if i'm in the basement then it would be: (“1”, “2”)
+	#move = input("You can go to the kitchen (1), or the upstairs (2).")	
+## What happened? #return room # run room loop to let user leave
+#	while True:
+#		if move == "1":
+#			print("You go to the kitchen.")
+#			return "room2"
+#		elif move == "2":
+#			print("You go upstairs.")
+#            return "room3"
+#		else:
+#			print("That's not a choice...")
 
 
 
@@ -93,20 +128,29 @@ def room2():
 #if they decide to go upstairs 
 def room4():
     action2 = input("You are now in the upstairs. Would you like to go to the rooftop from the window?, or would you like to search the room? (say rooftop or search)")
-    if action2 == "rooftop":
-        print("You decided to go to the rooftop. Looks like the window in the livingroom is too hard to open with just your hands.")
-    if action2 == "Search":
+    if action2 == "search":
         print("You now have decided to search the room. You found a crowbar! you now have a crowbar.")
         inventory = inventory + "crowbar"
+    elif 
+    
 
 
 
 #Addison, room 5 Rooftop
 #if they go to the rooftop
 def room5(): # nickolle is doing this next part since addison is not here.
-    action3 = input("You are now in the rooftop would you like to jump off the roof or just sit? The building if flooding really bad. Hurry up. Think what your decision is going to be. Hurry up. (say SIT or JUMP ) ")
-    if action3 == "SIT"
-    print("You decided to sit in your misery. you lasted 2 days starved and died. :) ")
+    action3 = input("You are now in the rooftop would you like to jump off the roof or just sit? The house is flooding really bad. Hurry up. Think what your decision is going to be. Hurry up. (say SIT or JUMP ) ")
+    if action3 == "SIT":
+        print("You decided to sit in your misery. you lasted 2 days starved and died. :) ")
+    else:
+        if action3 == "JUMP":
+            print("You stood back untill you reach the end of the back of the roof, you realized that there was a trampoline in your backyard, you then jump off the roof, trying to land on the trampoline")
+
+    import random
+    while True:
+        print("You jumped, then missed the trampoline, you tragically died from the fall. ")
+    else:
+        print("You managed to jump on the trampoline to safty. Congrats, you were able to survive. ")
     
     
 

@@ -25,7 +25,7 @@ with open("win_loss.txt", "r")as file:
 win = int(win_loss[0])
 
 loss = int(win_loss[1])
-
+position == 1
 
 
 
@@ -52,94 +52,103 @@ def display(word,guessed):
 
 print("Hello! You are trapped in a house that is flooding. To survive, you must escape the house. Because the house is flooding, you have limited moves to escape. Good Luck!!!")
 #function for room one or basement
-def room_one(incorrect, position):
+def room1(incorrect, position):
     # while true loop for lock
     while True:
-        lock = input("""
-                     It's Dark. You can't see well. ('cuz it's dark...) You are in the basement, and water is pooling around you ankles. You notice there is a locked door with a lock on it. (WOW! So smart!) Do you sit and accept your fate, or look at the lock? (say SIT or LOOK.)  """).strip().lower()
-        if lock == "sit":
-            print("You accepted your fate. You drowned. Imagine...")
-            break
-        elif lock == "look":
-            print("""You look at the lock. Its a password code thing. Sence you didn't give up, you are going to at least pretend to open the lock. (Yes I'm making you do this. You're welcome!)""")
-            ### CODE FOR GUESSING GAME ###
-            #### mini game loop (while true) 
-            display(word,guessed)
-            while True:
-                #make the display print thing work (make it simplier)
-                current_display = display(word,guessed)
-                if guessed == 0:
+        if incorrect <= 0:
+            lock = input("""
+                        It's Dark. You can't see well. ('cuz it's dark...) You are in the basement, and water is pooling around you ankles. You notice there is a locked door with a lock on it. (WOW! So smart!) Do you sit and accept your fate, or look at the lock? (say SIT or LOOK.)  """).strip().lower()
+            if lock == "sit":
+                print("You accepted your fate. You drowned. Imagine...")
+                position == 7
+                break
+            elif lock == "look":
+                print("""You look at the lock. Its a password code thing. Since you didn't give up, you are going to at least pretend to open the lock. (Yes I'm making you do this. You're welcome!)""")
+                ### CODE FOR GUESSING GAME ###
+                #### mini game loop (while true) 
+                while True:
+                    display(word,guessed)
+                    # creat variable (ask user to guess letter)
+            # creat variable (ask user to guess letter)
+                    letter = input("Guess a letter: ").strip().lower()
+                    # make a space to make it look better 
+                    print("""
+                """)
+                    # add letter to list of guessed letters
+                    if letter in guessed:
+                        print("""You guessed this already...
+                        
+                        
+                        """)
+                        continue
+                    guessed.append(letter)
+                    # check "if not letter in word:"
+                    if letter not in word:
+                        # increase incorrect guesses
+                        incorrect += 1
+
+                    # recheck if display word is same as word (call function)
+                    current_display = (display(word,guessed))
+                    # print function to show display word
                     print(current_display)
-                # create variable (ask user to guess letter)
-                user = input("Guess a letter: ").strip().lower()
-                # make a space to make it look better 
+                    if current_display == word:
+                        # tell user they won
+                        print("You finaly got it!")
+                        print("""
+                            The door swings open. The water is now chest-deep and rising fast. You go out the open door and up some stairs.""")
+                        position == 2
+                        break
+                        #check if they lost (6 wrong guesses)
+                    if incorrect == 6:
+                        print(f"The code was {word}.")
+                        position == 7
+                        break
+            else:
                 print("""
+                    Dude. You are either a looser or you can't spell. (I can't spell, but I'm not the one stuck in a flooding house...) Put the right thing in this time.""")
+                
+    return room1
 
+def room2():
+    print("room2") 
+    return "room2"
 
-            """)
-                # add letter to list of guessed letters
-                if current_display == word:
-                    # tell user they won
-                    print("You finaly got it.")
-                    print("""
-                    The door swings open. The water is now chest-deep and rising fast. You go out the open door and up some stairs.""")
-                    locked == 1
-                if user in guessed:
-                    print("""You guessed this already...
-                    
-                    
-                    """)
-                    continue
-                guessed.append(user)
-                # check "if not letter in word:"
-                if user not in word:
-                    print("Wrong!")
-                    # increase incorrect guesses
-                    incorrect += 1
-                    
-                # recheck if display word is same as word (call function)
-                current_display = (display(word,guessed))
-                # print function to show display word
-                print(current_display)
-                if current_display == word:
-                    # tell user they won
-                    print("You finaly got it.")
-                    print("""
-                    The door swings open. The water is now chest-deep and rising fast. You go out the open door and up some stairs.""")
-                    locked = 1
-                #check if they lost (6 wrong guesses)
-                if incorrect == 6:
-                    print(f"The code was {word}.")
-                    print("You didn't get it in time. You are dead.")
-        elif locked == 1:
-            position = 2
+def room3():
+    print("room3")
+    return "room3"
 
-        else:
-            print("""
-                  Dude. You are either a looser or you can't spell. (I can't spell, but I'm not the one stuck in a flooding house...) Put the right thing in this time.""")
-            
-        
+def room4():
+    print("room4")
+    return "room4"
+
+def room5():
+    print("room5")
+    return "room5"
+
+def dead():
+    print("You died. You are dead.")
+    return "dead"
 
 
 #Alexia, Main Game Loop
 while True:
     while True:
-        if position == 1:
-            room_one(incorrect, position)
-        elif position == 2:
-            #living_room()
-            print("you in da living room")
-        elif position == 3:
-            #room_three()
-            print("you in da kithen ")
-        elif position == 4:
-            #upstaris()
-            print("you are in the attic")
-        elif position == 5:
-            #rooftop()
-            print("You are on the roof")
+        if position == "1":
+            position = room1(incorrect, position)
+        elif position == "2":
+            position = room2()
+        elif position == "3":
+            position = room3()
+        elif position == "4":
+            position = room4()
+        elif position == "5":
+            position = room5()
+        elif position == "7":
+            position = dead()
+
         else:
             break
+
         if outside == 1:
             print("""
                 You got outside. Nice. Work on your people skills, because I don't want to help you with this. AGAIN. But then again, knowing you I will have too. ugh.""")
@@ -156,6 +165,27 @@ while True:
                 guessed = []
             elif replay == "n":
                 print("A smart choice, yay. Hopeful I won't see you around!")
+                win += 1
+                with open("win_loss.txt", "w") as file:
+                    file.write(f"{win},{loss}")
+                    print(f"Wins: {win}, Losses : {loss}.")
+                break
+
+        if position == 7:
+            print("You died. You are dead. Get it now? You had 'dangerous enimies' so you died. Make better choices. Well. I can give you another shot...")
+            replay = input("""
+                        Welp. Might as well get it over with now. If you insist on getting locked up again say so now. (Put: I   for 'I Insist on making bad life choices'   or: N   for 'Nah I'll be smart': )""").strip().lower()
+            if replay == "i":
+                loss += 1
+                moves = 0
+                outside = 0
+                word = random.choice(words)
+                # varaible for  wrong guesses
+                incorrect = 0
+                # varable for guessed letters
+                guessed = []
+            elif replay == "n":
+                print("A smart choice finally. yay. Hopeful I won't see you around!")
                 loss += 1
                 with open("win_loss.txt", "w") as file:
                     file.write(f"{win},{loss}")
