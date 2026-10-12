@@ -24,7 +24,7 @@ loss = int(win_loss[1])
 #start info
 print("Hello! You are trapped in a house that is flooding. To survive, you must escape the house. Because the house is flooding, you have limited moves to escape. Good Luck!!!")
 #function for room one or basement
-def room_one():
+def room1():
     # while true loop for lock
     while True:
         lock = input("It's Dark. You can't see well. ('cuz it's dark...) You are in the basement, and water is pooling around you ankles. You notice there is a locked door with a lock on it. (WOW! So smart!) Do you sit and accept your fate, or look at the lock? (say SIT or LOOK.)").strip().lower()
@@ -38,18 +38,25 @@ def room_one():
         else:
             print("Dude. You are either a looser or you can't spell. (I can't spell, but I'm not the one stuck in a flooding house...)")
 
-
-
-
-
-
-
+            ######## This is how you can move rooms #######
+## give user a list of rooms that THEY CAN GO to *(so if i'm in the basement then it would be: (“1”, “2”)
+	#move = input("You can go to the kitchen (1), or the upstairs (2).")	
+## What happened? #return room # run room loop to let user leave
+#	while True:
+#		if move == "1":
+#			print("You go to the kitchen.")
+#			return "room2"
+#		elif move == "2":
+#			print("You go upstairs.")
+#            return "room3"
+#		else:
+#			print("That's not a choice...")
 
 
 
 #Addison, Room 3 
 print("You have entered the kitchen")
-def room_three():
+def room3():
     print("You stepped into the kitchen, where you faintly smell pizza sause. You turned your head and saw the backdoor locked, you then reaslize that door is your only ticket out of the house. You then relize you have to find the key to escape the house.")
     while True:
         door= input("The door to escape is locked, you began to panic a bit, would you like to break the door down. ")
@@ -70,7 +77,7 @@ def room_three():
 
 #nickolle, Room 2
 # if they decide to go to the living room.
-def living_room():
+def room2():
     action= input("You are now in the living room. Would you like to go to the kitchen, upstairs, or would you like to search the room? (say search or upstairs or kitchen)")
     if action == "search":
         print("You have decided to search the room. You found a key! You now have a key.")
@@ -84,7 +91,7 @@ def living_room():
 
 #nickolle, room 4 Upstairs 
 #if they decide to go upstairs 
-def upstairs():
+def room4():
     action2 = input("You are now in the upstairs. Would you like to go to the rooftop from the window?, or would you like to search the room? (say rooftop or search)")
     if action2 == "rooftop":
         print("You decided to go to the rooftop. Looks like the window in the livingroom is too hard to open with just your hands.")
@@ -96,7 +103,7 @@ def upstairs():
 
 #Addison, room 5 Rooftop
 #if they go to the rooftop
-def rooftop(): # nickolle is doing this next part since addison is not here.
+def room5(): # nickolle is doing this next part since addison is not here.
     action3 = input("You are now in the rooftop would you like to jump off the roof or just sit? The building if flooding really bad. Hurry up. Think what your decision is going to be. Hurry up. (say SIT or JUMP ) ")
     if action3 == "SIT"
     print("You decided to sit in your misery. you lasted 2 days starved and died. :) ")
