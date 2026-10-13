@@ -78,7 +78,7 @@ def mini_game(display, position,incorrect, moves):
                             print("You finaly got it!")
                             print("""
                                 The door swings open. The water is now chest-deep and rising fast. You go out the open door and there are some stairs.""")
-                            moves = moves + 1
+                            moves =+ 1
                             return "room2"
                             break
                             #check if they lost (6 wrong guesses)
@@ -100,30 +100,30 @@ def room1(incorrect, position, moves):
     while True:
         lock = input("""
                         It's Dark. You can't see well. ('cuz it's dark...) You are in the basement, and water is pooling around you ankles. You notice there is a locked door with a lock on it. (WOW! So smart!) Do you sit and accept your fate, or look at the lock? (say SIT or LOOK.)  """).strip().lower()
-            
-        if lock == "sit":
-            print("You accepted your fate. You drowned. Imagine...")
-            return "room7"
-            break
-        elif lock == "look":
-            print("""You look at the lock. Its a password code thing. Since you didn't give up, you are going to at least pretend to open the lock. (Yes I'm making you do this. You're welcome!)""")
-            ### CODE FOR GUESSING GAME ###
-            #### mini game loop (while true) 
-            mini_game(display, position,incorrect, moves)
-
-
-            move = input("Do you leave(1) or stay(2)?: ").strip()
-            if move == "1":
-                print("You go up the stairs")
-                moves = moves + 1
-                return "room2"
-            elif move == "2":
-                print("You stay. Unwisely.")
+        while True:    
+            if lock == "sit":
+                print("You accepted your fate. You drowned. Imagine...")
                 return "room7"
-        else:
-            print("""
-                Dude. You are either a looser or you can't spell. (I can't spell, but I'm not the one stuck in a flooding house...) Put the right thing in this time.""")
-                
+                break
+            elif lock == "look":
+                print("""You look at the lock. Its a password code thing. Since you didn't give up, you are going to at least pretend to open the lock. (Yes I'm making you do this. You're welcome!)""")
+                ### CODE FOR GUESSING GAME ###
+                #### mini game loop (while true) 
+                mini_game(display, position,incorrect, moves)
+
+
+                move = input("Do you leave(1) or stay(2)?: ").strip()
+                if move == "1":
+                    print("You go up the stairs")
+                    moves += 1
+                    return "room2"
+                elif move == "2":
+                    print("You stay. Unwisely.")
+                    return "room7"
+            else:
+                print("""
+                    Dude. You are either a looser or you can't spell. (I can't spell, but I'm not the one stuck in a flooding house...) Put the right thing in this time.""")
+                    
     return room1
 
 
@@ -155,23 +155,58 @@ def room7(position, loss, moves, outside, word,incorrect, guessed):
 
 #Addison, Room 3 kitchen
 def room3(moves, position):
-    print("You stepped into the kitchen, where you faintly smell pizza sause. You see a door, but the door has a lock on it, preventing anyone from coming in. ")
+    print("You stepped into the kitchen, where you faintly smell pizza sause. You see a door, but the door has a lock on it, preventing anyone from coming or going. ")
     while True:
-        door= input("The door to escape is locked, you began to panic a bit, would you like to break the door down. (yes or no) ").upper().strip()
-        if door == "Yes":
-            search= input("You tried to break down the door, but failed. Would you like to search the kitchen? (yes or no) ").upper().strip()
+        door= input("The door to escape is locked, you began to panic a bit, would you like to break the door down(1) or unlock the door(2). ").capitalize().strip()
+        if door == "1":
+            search= input("""
+                          You tried to break down the door, but failed. Would you like to search the kitchen? """).capitalize().strip()
             if search == "Yes":
                 print("You began to search everywhere, the cabnets, the stove, the fridge, all of it. You cannot find the key. ")
+                leave = input("""
+                              Would you like to go back to the living room?""").lower().strip()
+                if leave == "yes":
+                    print("You go to the living room")
+                    move =+ 1
+                    return "room2"
+                elif leave == "no":
+                    print("You stay. ")
+                    return "room7"
             elif search == "No":
-                    print("You didn't really want to check it. ")
-        elif door == "No":
-            search2= input("You proceeded to not break the door. You then thought to go back to the living room, but you also thought to search the kitchen one more time. Would you like to, A, check upstairs, or B search kitchen. ").upper().strip()
-            if search2 == "A":
-                print("You decided to go to the upstairs. ")
-                move = move + 1
-                return "room2"
-            elif search2 == "B":
-                print("You decided to check the kitchen, but you cannot find it again. ")
+                print("You didn't really want to check it. ")
+                leave = input("""
+                              Would you like to go back to the living room?""").lower().strip()
+                if leave == "yes":
+                    print("You go to the living room")
+                    move =+ 1
+                    return "room2"
+                elif leave == "no":
+                    print("You stay. ")
+                    return "room7"
+        elif door == "2":
+            print("You try to open the door.")
+            if inventory == ("key") or ("key", "crowbar") or ("crowbar", "key"):
+                print(" you use the key you had to unlock the door.")
+                outside += 1
+            else:
+                print("You couldn't unlock the door.")
+                search2= input("You then thought to go back to the living room, but you also thought to search the kitchen one more time. Would you like to, A, Go to the living room, or B search kitchen. ").capitalize().strip()
+                if search2 == "A":
+                    print("You decided to go to the living room. ")
+                    move =+ 1
+                    return "room2"
+                elif search2 == "B":
+                    print("You decided to check the kitchen, but you cannot find it again. ")
+                    leave = input("""
+                                Would you like to go back to the living room?""").lower().strip()
+                    if leave == "yes":
+                        print("You go to the living room")
+                        move += 1
+                        return "room2"
+                    elif leave == "no":
+                        print("You stay. ")
+                        return "room7"
+           
     else: 
         print("JUST ANSWER THE QUESTION!")
 
@@ -182,21 +217,30 @@ def room3(moves, position):
 #nickolle, Room 2
 # if they decide to go to the living room.
 def room2(moves, position, inventory):
-    action= input("You are now in the living room. Would you like to go to the kitchen, upstairs, or would you like to search the room? (say search or upstairs or kitchen)")
+    action= input("You are now in the living room. Would you like to go to the kitchen, upstairs, or would you like to search the room? (say search or upstairs or kitchen)").lower().strip()
     while True:
         if action == "search":
             print("You have decided to search the room. You found a key! You now have a key.")
-            inventory= inventory+"Key"
+            inventory.append("key")
+            print(f"Your inventory is: {inventory}.")
+            action_hidden= input("Would you like to go to the kitchen(1) or upstairs(2)")
+            if action_hidden == "1":
+                print("you decided to go to the kitchen")
+                moves =+ 1
+                return "room3"
+            elif action_hidden == "2":
+                print("you decided to go upstairs")
+                moves =+ 1
+                return "room4"
         elif action == "kitchen":
             print("you decided to go to the kitchen")
-            moves = moves+ 1
+            moves =+ 1
             return "room3"
-        elif action == ("upstairs"):
-            print ("you decided to go upstairs")
+        elif action == "upstairs":
+            print("you decided to go upstairs")
+            moves =+ 1
             return "room4"
-        elif action == "search":
-            print("you decide to search the room.You found a key. You now have a key.")
-            inventory= inventory +"Key"
+        
     else:
         print("I gave you three options can you pick one.. preferably now")
 
@@ -211,12 +255,31 @@ def room4(moves, position, inventory):
         action2 = input("You are now in the upstairs. Would you like to go to the rooftop from the window?, or would you like to search the room? (say rooftop or search)")
         if action2 == "search":
             print("You now have decided to search the room. You found a crowbar! you now have a crowbar.")
-            inventory = inventory + "crowbar"
+            inventory.append("crowbar")
+            leave = input("""
+                              Would you like to go back to the (1)living room, or (2)stay?""").lower().strip()
+            if leave == "1":
+                print("You go to the living room")
+                move =+ 1
+                return "room2"
+            elif leave == "2":
+                print("You stay. ")
+                escape = input("Would you like to go to the rooftop(1) or quit(2):  ")
+                if escape == "1":
+                    if inventory == ("crowbar") or ("key", "crowbar") or ("crowbar", "key"):
+                        print("you decided to go to the rooftop")
+                        moves =+ 1
+                        return "room 5"
+                    else:
+                        print("You are weak and can't open the window.")
         elif action2:
                 if action2 == "rooftop":
-                    print("you decided to go to the rooftop")
-                    moves = moves + 1
-                    return "room 5"
+                    if inventory == ("crowbar") or ("key", "crowbar"):
+                        print("you decided to go to the rooftop")
+                        moves =+ 1
+                        return "room 5"
+                    else:
+                        print("You are weak and can't open the window.")
     else:
         print("Okay why arent you choosing any of the options. choose now.")
             
