@@ -122,6 +122,8 @@ def room1(incorrect, position):
                 
     return room1
 
+
+#### Alexia (If you die...(function)) ####
 def room7():
     print("You died. You are dead. Get it now? You had 'dangerous enimies' so you died. You have to make better choices, because I can't fix your problems. Well. That's not true. But I won't. I guess CAN give you another shot at this...")
     replay = input("""
