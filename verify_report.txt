@@ -1,0 +1,190 @@
+TABLE
+Test input (age, matinee input)
+Expected
+Actual
+Pass/Fail
+4, no
+Ticket price: $0.00
+Ticket price: $0
+fail
+5, no
+Ticket price: $8.00
+Ticket price: $8
+fail
+12, no
+Ticket price: $8.00
+Ticket price: $12
+FAIL
+13, no
+Ticket price: $12.00
+Ticket price: $12
+fail
+64, no
+Ticket price: $12.00
+Ticket price: $12
+fail
+65, no
+Ticket price: $9.00
+Ticket price: $9
+fail
+3, yes
+Ticket price: $0.00
+Ticket price: $-3
+FAIL
+30, yes
+Ticket price: $9.00
+Ticket price: $9
+fail
+Twenty seven
+Invalid age
+  File "c:\Users\alexia.boone\Documents\AB_CSP\ticket.py", line 2, in <module>
+    age = int(input("Enter your age: "))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'Twenty seven'
+
+
+FAIL
+30, MAYBE
+(Unspecified (ask again?))
+Ticket price: $12
+FAIL
+
+
+
+
+
+
+
+BUG REPORT
+Input
+spec
+output
+Error type
+Twenty seven
+If the age is not a whole number of 0 or more, print Invalid age and stop. Don't ask any more questions.
+
+
+File "c:\Users\alexia.boone\Documents\AB_CSP\ticket.py", line 2, in <module>
+    age = int(input("Enter your age: "))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'Twenty seven'
+
+
+Runtime error
+12, no
+Ages 5–12: $8
+A matinee takes $3 off the price. The price can never go below $0.
+
+
+Ticket price: $12
+Logic error
+3, yes
+A matinee takes $3 off the price. The price can never go below $0.
+
+
+Ticket price: $-3
+Logic error
+30, MAYBE
+Not specific. Keep asking till input correct?
+Ticket price: $12
+Logic error
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FINAL TABLE
+Test input (age, matinee input)
+Expected
+Actual
+Pass/Fail
+4, no
+Ticket price: $0.00
+Ticket price: $0.00
+Pass
+5, no
+Ticket price: $8.00
+Ticket price: $8.00
+Pass
+12, no
+Ticket price: $8.00
+Ticket price: $8.00
+Pass
+13, no
+Ticket price: $12.00
+Ticket price: $12.00
+Pass
+64, no
+Ticket price: $12.00
+Ticket price: $12.00
+Pass
+65, no
+Ticket price: $9.00
+Ticket price: $9.00
+Pass
+3, yes
+Ticket price: $0.00
+Ticket price: $0.00
+Pass
+30, yes
+Ticket price: $9.00
+Ticket price: $9.00
+Pass
+Twenty seven
+Invalid age (breaks)
+Invalid age (breaks)
+Pass
+30, MAYBE
+(Unspecified (ask again))
+(Unspecified (ask again))
+Pass
+
+
+
+
+
+EXPLANATION
+
+In my code I put everything in a while True loop so I could replay. I checked for/made an integer, and responded according to the spec. Then I checked the age and fulfilled the specs there. Then I checked if it was a matinee, and fulfilled the specs. Every test ran smoothly. It does repeat
